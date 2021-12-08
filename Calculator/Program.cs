@@ -5,68 +5,44 @@ namespace Calculator
 {
     class Program
     {
-        static double num1 = 0;
-        static double num2 = 0;
         static double GetNumberFromUser()
         {
-            double userInput = 0;
+            double userInput;
 
             Write("\r: ");
             double.TryParse(ReadLine(), out userInput);
 
             return userInput;
         }
-        static void Addition()
+        static double Addition(double num1, double num2)
         {
-            Clear();
-            WriteLine("Enter the values you wish to add together");
-            num1 = GetNumberFromUser();
-            num2 = GetNumberFromUser();
-            Clear();
-            WriteLine(" {0} + {1} = {2}", num1, num2, num1 + num2);
-            ReadKey();
+            return num1 + num2;
         }
-        static void Suptraction()
+        static double Suptraction(double num1, double num2)
         {
-            Clear();
-            WriteLine("Enter the values you wish to subtract from each other ");
-            num1 = GetNumberFromUser();
-            num2 = GetNumberFromUser();
-            Clear();
-            WriteLine(" {0} - {1} = {2}", num1, num2, num1 - num2);
-            ReadKey();
+            return num1 - num2;
         }
-        static void Multiplication()
+        static double Multiplication(double num1, double num2)
         {
-            Clear();
-            WriteLine("Enter the values you wish to multiply");
-            num1 = GetNumberFromUser();
-            num2 = GetNumberFromUser();
-            Clear();
-            WriteLine(" {0} * {1} = {2}", num1, num2, num1 * num2);
-            ReadKey();
+            return num1 * num2;
         }
-        static void Division()
+        static double Division(double num1, double num2)
         {
-            Clear();
-            WriteLine("Enter the values you wish to divide");
-            num1 = GetNumberFromUser();
-            num2 = GetNumberFromUser();
-            Clear();
-            try
+            if (num2 != 0)
             {
-                WriteLine(" {0} / {1} = {2}", num1, num2, num1 / num2);
+                return num1 / num2;
             }
-            catch (DivideByZeroException)
+            else
             {
-                WriteLine("Hmm... you tried to divide by 0.");
+                WriteLine("You can't divide by 0");
             }
-            ReadKey();
+            return -1;
         }
         static void Main(string[] args)
         {
             bool running = true;
-
+            double num1;
+            double num2;
             while (running)
             {
                 
@@ -83,16 +59,32 @@ namespace Calculator
                 switch (GetNumberFromUser())
                 {
                     case 1:
-                        Addition();
+                        Clear();
+                        num1 = GetNumberFromUser();
+                        num2 = GetNumberFromUser();
+                        WriteLine($"{num1} + {num2} = {Addition(num1, num2)}");
+                        ReadKey();
                         break;
                     case 2:
-                        Suptraction();
+                        Clear();
+                        num1 = GetNumberFromUser();
+                        num2 = GetNumberFromUser();
+                        WriteLine($"{num1} - {num2} = {Suptraction(num1, num2)}");
+                        ReadKey();
                         break;
                     case 3:
-                        Multiplication();
+                        Clear();
+                        num1 = GetNumberFromUser();
+                        num2 = GetNumberFromUser();
+                        WriteLine($"{num1} * {num2} = {Multiplication(num1, num2)}");
+                        ReadKey();
                         break;
                     case 4:
-                        Division();
+                        Clear();
+                        num1 = GetNumberFromUser();
+                        num2 = GetNumberFromUser();
+                        WriteLine($"{num1} / {num2} = {Division(num1, num2)}");
+                        ReadKey();
                         break;
                     case 5:
                         running = false;
