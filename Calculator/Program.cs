@@ -14,18 +14,22 @@ namespace Calculator
 
             return userInput;
         }
+
         static double Addition(double num1, double num2)
         {
             return num1 + num2;
         }
+
         static double Suptraction(double num1, double num2)
         {
             return num1 - num2;
         }
+
         static double Multiplication(double num1, double num2)
         {
             return num1 * num2;
         }
+
         static double Division(double num1, double num2)
         {
             if (num2 != 0)
@@ -38,11 +42,35 @@ namespace Calculator
             }
             return -1;
         }
+
+        static string WriteOutAnswer(char mathMethod)
+        {
+            Clear();
+            double num1 = GetNumberFromUser();
+            double num2 = GetNumberFromUser();
+            double sum = 0;
+            if (mathMethod == '+')
+            {
+                sum = Addition(num1, num2);
+            }
+            if (mathMethod == '-')
+            {
+                sum = Suptraction(num1, num2);
+            }
+            if (mathMethod == '/')
+            {
+                sum = Multiplication(num1, num2);
+            }
+            if (mathMethod == '*')
+            {
+                sum = Division(num1, num2);
+            }
+            return $"{num1} {mathMethod} {num2} = {sum}";
+        }
+
         static void Main(string[] args)
         {
             bool running = true;
-            double num1;
-            double num2;
             while (running)
             {
                 
@@ -59,31 +87,19 @@ namespace Calculator
                 switch (GetNumberFromUser())
                 {
                     case 1:
-                        Clear();
-                        num1 = GetNumberFromUser();
-                        num2 = GetNumberFromUser();
-                        WriteLine($"{num1} + {num2} = {Addition(num1, num2)}");
+                        WriteLine(WriteOutAnswer('+'));
                         ReadKey();
                         break;
                     case 2:
-                        Clear();
-                        num1 = GetNumberFromUser();
-                        num2 = GetNumberFromUser();
-                        WriteLine($"{num1} - {num2} = {Suptraction(num1, num2)}");
+                        WriteLine(WriteOutAnswer('-'));
                         ReadKey();
                         break;
                     case 3:
-                        Clear();
-                        num1 = GetNumberFromUser();
-                        num2 = GetNumberFromUser();
-                        WriteLine($"{num1} * {num2} = {Multiplication(num1, num2)}");
+                        WriteLine(WriteOutAnswer('/'));
                         ReadKey();
                         break;
                     case 4:
-                        Clear();
-                        num1 = GetNumberFromUser();
-                        num2 = GetNumberFromUser();
-                        WriteLine($"{num1} / {num2} = {Division(num1, num2)}");
+                        WriteLine(WriteOutAnswer('*'));
                         ReadKey();
                         break;
                     case 5:
